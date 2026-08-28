@@ -1,2 +1,2 @@
 # Plant-Project
-Project that tracks the life cycle of a plant. The data is received from a cloud service, which is sent by a microcontroller to the cloud service. 
+An intelligent plant monitoring platform designed to automate and simplify home gardening. Using a Wi-Fi-enabled sensor device placed in the soil, the system tracks real-time environmental data like moisture levels and sunlight. This information is sent directly to an online web application, which automatically manages a digital plant-care checklist and leverages AI to provide users with clear health updates and personalized care recommendations.
