@@ -15,9 +15,14 @@ public class TelemetryService {
         this.telemetryRepository = telemetryRepository;
     }
 
-    public Telemetry createTelemetry(float sunlight, int soilMoisture, float roomTemp, double humidity){
-        Telemetry telemetry = new Telemetry(sunlight, soilMoisture, roomTemp, humidity);
+    public Telemetry createTelemetry(Telemetry telemetry){
         return telemetryRepository.save(telemetry);
+
+    }
+    public Telemetry[] getTelemetry(){
+        java.util.List<Telemetry> t = telemetryRepository.findAll();
+        Telemetry[] telemetryArray = t.toArray(new Telemetry[0]);
+        return telemetryArray;
 
     }
 
