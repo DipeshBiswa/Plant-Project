@@ -1,5 +1,5 @@
 import { useState } from 'react'
-
+import {TelemetryData} from './TelemetryData.jsx'
 import './App.css'
 
 function App() {
@@ -7,6 +7,9 @@ function App() {
 
   return (
     <>
+    <div>
+      <TelemetryData />
+    </div>
     </>
   )
 }
