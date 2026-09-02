@@ -26,7 +26,7 @@ function TelemetryData(){
             <h1>Plant Data: </h1>
             {data.map((plant) =>(
                 <p key={plant.id}>
-                    {plant.id}, {plant.sunlight}
+                   ID: {plant.id}, Sunlight Amount: {plant.sunlight}
                 </p>
             ))}
         </div>
