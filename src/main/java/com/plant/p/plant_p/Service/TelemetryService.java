@@ -1,5 +1,7 @@
 package com.plant.p.plant_p.Service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,9 @@ public class TelemetryService {
         Telemetry[] telemetryArray = t.toArray(new Telemetry[0]);
         return telemetryArray;
 
+    }
+    public List<Telemetry> getDailyTelemetry(){
+        return telemetryRepository.findAllFromLatestDay();
     }
 
 
