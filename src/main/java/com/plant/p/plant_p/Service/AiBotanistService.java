@@ -3,16 +3,15 @@ package com.plant.p.plant_p.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.models.messages.Message;
 import com.anthropic.models.messages.MessageCreateParams;
 import com.anthropic.models.messages.Model;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.plant.p.plant_p.Models.Telemetry;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.json.JsonMapper;
 
 @Service
 public class AiBotanistService {
@@ -73,9 +72,10 @@ public class AiBotanistService {
                 "";
     
     private AnthropicClient client;
-    private ObjectMapper objectMapper;
+    
+    private JsonMapper objectMapper;
 
-    public AiBotanistService(AnthropicClient client, ObjectMapper objectMapper){
+    public AiBotanistService(AnthropicClient client, JsonMapper objectMapper){
         this.client = client;
         this.objectMapper = objectMapper;
     }
@@ -89,10 +89,10 @@ public class AiBotanistService {
                 """.formatted(stringJson);
         
 
-            MessageCreateParams params = MessageCreateParams.builder().model(Model.CLAUDE_SONNET_5).maxTokens(300).system(PROMPT).addUserMessage(string).build();
+            MessageCreateParams params = MessageCreateParams.builder().model(Model.CLAUDE_SONNET_5).maxTokens(1000).system(PROMPT).addUserMessage(string).build();
             Message response = client.messages().create(params);
             return response.content().stream().flatMap(block -> block.text().stream()).map(textBlock -> textBlock.text()).collect(Collectors.joining("\n"));
-        }catch(JsonProcessingException e){
+        }catch(JacksonException e){
             throw new IllegalStateException("Failed to serialize telemetry data", e);
 
         }
