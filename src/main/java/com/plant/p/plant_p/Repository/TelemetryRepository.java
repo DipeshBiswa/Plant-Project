@@ -11,7 +11,7 @@ import com.plant.p.plant_p.Models.Telemetry;
 @Repository
 public interface TelemetryRepository extends JpaRepository<Telemetry, Long>{
     @Query(value = """
-            SELECT * FROM telemetry WHERE time::date = (SELECT MAX(timestamp::date) FROM telemetry
+            SELECT * FROM telemetry WHERE timestamp::date = (SELECT MAX(timestamp::date) FROM telemetry
             )
             ORDER BY timestamp ASC
             """,nativeQuery = true)

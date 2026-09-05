@@ -1,9 +1,9 @@
 package com.plant.p.plant_p.Service;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
-
-
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import com.anthropic.client.AnthropicClient;
@@ -79,7 +79,7 @@ public class AiBotanistService {
         this.client = client;
         this.objectMapper = objectMapper;
     }
-    public String analyzePlantHealth(Telemetry[] telemetry){
+    public String analyzePlantHealth(List<Telemetry> telemetry){
 
         try{String stringJson = objectMapper.writeValueAsString(telemetry);
         
