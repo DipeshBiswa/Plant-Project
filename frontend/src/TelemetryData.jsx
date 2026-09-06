@@ -29,6 +29,9 @@ function TelemetryData(){
                    ID: {plant.id}, Sunlight Amount: {plant.sunlight}
                 </p>
             ))}
+            <div>
+                
+            </div>
         </div>
     )
 
