@@ -1,0 +1,38 @@
+:root {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #293c32;
+  background: #f7f7f0;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --color-ink: #293c32;
+  --color-muted: #667267;
+  --color-green: #355d45;
+  --color-border: #dde3d8;
+  --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+button {
+  font: inherit;
+}
+
+button:focus-visible {
+  outline: 3px solid var(--color-green);
+  outline-offset: 5px;
+}
+
+::selection {
+  color: #203c2a;
+  background: #d7e4cd;
+}
