@@ -14,7 +14,7 @@ import com.plant.p.plant_p.Service.AiBotanistService;
 import com.plant.p.plant_p.Service.TelemetryService;
 
 @RestController
-@RequestMapping("/Ai")
+@RequestMapping("/ai")
 @CrossOrigin(origins = "http://localhost:5173/")
 public class AiBotanistController {
 
