@@ -1,5 +1,6 @@
 package com.plant.p.plant_p.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,7 +10,10 @@ import com.anthropic.client.AnthropicClient;
 import com.anthropic.models.messages.Message;
 import com.anthropic.models.messages.MessageCreateParams;
 import com.anthropic.models.messages.Model;
+import com.plant.p.plant_p.Models.PreviousMessage;
 import com.plant.p.plant_p.Models.Telemetry;
+import com.plant.p.plant_p.Repository.PreviousMessageRepository;
+
 import tools.jackson.core.JacksonException;
 import tools.jackson.databind.json.JsonMapper;
 
@@ -146,29 +150,65 @@ STYLE RULES
 - Do not give more than 3 observations or 3 recommendations.
 - Prioritize actionable information.
 - Keep the entire response under 200 words.
+
+IMPORTANT:
+
+At the very beginning of your response, include a short "Plant Health Memory" summary that can be stored in the database and provided back to you during the next analysis.
+
+This summary should contain only the most important information needed to understand the plant's previous health, including:
+
+Previous health status
+Important environmental concerns
+Significant trends
+Actions that were recommended
+
+Keep this summary concise and factual.
+
+End the Plant Health Memory section with exactly one # character.
+
+Do not use the # character anywhere else in the response.
+
+After the #, provide the normal user-facing plant health assessment.
 """;
     
     private AnthropicClient client;
     
     private JsonMapper objectMapper;
+    private PreviousMessageService pMessage;
 
-    public AiBotanistService(AnthropicClient client, JsonMapper objectMapper){
+    public AiBotanistService(AnthropicClient client, JsonMapper objectMapper, PreviousMessageService pMessage){
         this.client = client;
         this.objectMapper = objectMapper;
+        this.pMessage = pMessage;
     }
     public String analyzePlantHealth(List<Telemetry> telemetry){
 
         try{String stringJson = objectMapper.writeValueAsString(telemetry);
-        
-        String string = """
+            List<PreviousMessage> previousData = pMessage.getAiMemory();
+            String string = """
                 Analyze the following Spider Plant telemetry data:
+                
                 %s
-                """.formatted(stringJson);
+
+                Previous plant health information:
+                %s
+                """.formatted(stringJson, previousData.toString());
         
 
-            MessageCreateParams params = MessageCreateParams.builder().model(Model.CLAUDE_SONNET_5).maxTokens(1000).system(PROMPT).addUserMessage(string).build();
+            MessageCreateParams params = MessageCreateParams.builder().model(Model.CLAUDE_SONNET_5).maxTokens(1100).system(PROMPT).addUserMessage(string).build();
             Message response = client.messages().create(params);
-            return response.content().stream().flatMap(block -> block.text().stream()).map(textBlock -> textBlock.text()).collect(Collectors.joining("\n"));
+            String message = response.content().stream().flatMap(block -> block.text().stream()).map(textBlock -> textBlock.text()).collect(Collectors.joining("\n"));
+            String[] splitMessage  = message.split("#", 2);
+            if (splitMessage.length < 2) {
+            throw new IllegalStateException(
+                    "AI response did not contain the expected # delimiter"
+            );
+        }
+            PreviousMessage memory = new PreviousMessage(splitMessage[0].trim(), LocalDateTime.now());
+            pMessage.createMessage(memory);
+            return splitMessage[1].trim();
+            
+
         }catch(JacksonException e){
             throw new IllegalStateException("Failed to serialize telemetry data", e);
 

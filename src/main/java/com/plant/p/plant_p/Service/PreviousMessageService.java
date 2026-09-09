@@ -1,5 +1,7 @@
 package com.plant.p.plant_p.Service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.plant.p.plant_p.Models.PreviousMessage;
@@ -16,6 +18,9 @@ public class PreviousMessageService{
 
     public PreviousMessage createMessage(PreviousMessage message){
         return previousMessage.save(message);
+    }
+    public List<PreviousMessage> getAiMemory(){
+        return previousMessage.findLatestAiReponse();
     }
     
 }

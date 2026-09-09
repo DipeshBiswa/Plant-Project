@@ -7,7 +7,7 @@ function AiResponse(){
 
         const getAiResponse = async () =>{
             try{
-                const response = await fetch("http://localhost:8080/Ai");
+                const response = await fetch("http://localhost:8080/ai");
                 if(!response.ok){
                     throw new Error("Failed to fetch Ai response");
                 }
