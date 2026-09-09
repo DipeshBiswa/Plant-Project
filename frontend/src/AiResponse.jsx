@@ -37,7 +37,6 @@ function AiResponse(){
                     </svg>
                 </button>
                 <p className="ai-response__reading">
-                    <span className="ai-response__label">Ai Response:</span>
                     <span className="ai-response__text">{aiResponse}</span>
                 </p>
             </div>
