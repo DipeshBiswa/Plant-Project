@@ -1,22 +1,9 @@
-import { useEffect, useState} from "react";
+import { useState} from "react";
+import AiReponseModal from "./AiResponseModal.jsx";
 import './AiResponse.css'
 
 function AiResponse(){
-    const [aiResponse, setAiResponse] = useState();
-
-
-        const getAiResponse = async () =>{
-            try{
-                const response = await fetch("http://localhost:8080/ai");
-                if(!response.ok){
-                    throw new Error("Failed to fetch Ai response");
-                }
-                const data = await response.text();
-                setAiResponse(data);
-            }catch(error){
-                console.error(error);
-            }
-        }
+    const [openModal, setModalOpen] = useState(false);
 
     return(
         <section className="ai-response" aria-labelledby="ai-response-title">
@@ -30,14 +17,15 @@ function AiResponse(){
                 <p className="section-eyebrow">Your AI plant assistant</p>
                 <h2 id="ai-response-title">A little plant wisdom.</h2>
                 <p className="ai-response__description">Make a little space for thoughtful plant care.</p>
-                <button className="ai-response__button" onClick={getAiResponse}>
+                <button className="ai-response__button" onClick={() => setModalOpen(true)}>
                     Get Ai Response
                     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                         <path d="M5 12h14m-5-5 5 5-5 5" />
                     </svg>
                 </button>
+                <AiReponseModal isOpen={openModal} onClose={() => setModalOpen(false)} />
                 <p className="ai-response__reading">
-                    <span className="ai-response__text">{aiResponse}</span>
+                    <span className="ai-response__text">{}</span>
                 </p>
             </div>
         </section>
