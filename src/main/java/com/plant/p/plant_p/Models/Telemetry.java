@@ -18,19 +18,21 @@ public class Telemetry {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private float sunlight;
+    private float lux;
     private String soilMoisture;
-    private float roomTemp;
+    private float roomTempF;
     private float humidity;
     
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime timestamp;
     
+
+    //day/month/year hour:mm:ss
     public Telemetry(){}
     public Telemetry(float sunlight, String soilMoisture, float roomTemp, float humidity, LocalDateTime timestamp){
-        this.sunlight = sunlight;
+        this.lux = sunlight;
         this.soilMoisture = soilMoisture;
-        this.roomTemp = roomTemp;
+        this.roomTempF = roomTemp;
         this.humidity = humidity;
         this.timestamp = timestamp;
     }
