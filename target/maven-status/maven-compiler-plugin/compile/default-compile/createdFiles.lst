@@ -1,0 +1,12 @@
+com/plant/p/plant_p/Config/AnthropicConfig.class
+com/plant/p/plant_p/Service/TelemetryService.class
+com/plant/p/plant_p/Controller/AiBotanistController.class
+com/plant/p/plant_p/Models/Telemetry.class
+com/plant/p/plant_p/Service/AiBotanistService.class
+com/plant/p/plant_p/Models/PreviousMessage.class
+com/plant/p/plant_p/Controller/TelemetryController.class
+com/plant/p/plant_p/PlantPApplication.class
+com/plant/p/plant_p/Service/PreviousMessageService.class
+com/plant/p/plant_p/Repository/PreviousMessageRepository.class
+com/plant/p/plant_p/Repository/TelemetryRepository.class
+com/plant/p/plant_p/Config/AppConfig.class
