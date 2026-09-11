@@ -29,10 +29,10 @@ public class Telemetry {
 
     //day/month/year hour:mm:ss
     public Telemetry(){}
-    public Telemetry(float sunlight, String soilMoisture, float roomTemp, float humidity, LocalDateTime timestamp){
-        this.lux = sunlight;
+    public Telemetry(float lux, String soilMoisture, float roomTempF, float humidity, LocalDateTime timestamp){
+        this.lux = lux;
         this.soilMoisture = soilMoisture;
-        this.roomTempF = roomTemp;
+        this.roomTempF = roomTempF;
         this.humidity = humidity;
         this.timestamp = timestamp;
     }
