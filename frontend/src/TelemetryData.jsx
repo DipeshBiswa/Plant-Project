@@ -7,9 +7,11 @@ function TelemetryData(){
     
 
     useEffect(() => {
+        const controller = new AbortController();
+        let timer;
         async function getPlantData(){
             try{
-                const response = await fetch("http://localhost:8080/telemetry");
+                const response = await fetch("https://plant-project-production.up.railway.app/telemetry", {signal:controller.signal});
                 if(!response.ok){
                     throw new Error("Failed to fetch plant data");
                 }
@@ -17,10 +19,17 @@ function TelemetryData(){
                 setPlantData(data);
             }catch(error){
                 console.error(error);
+            }finally{
+                if (!controller.signal.aborted){
+                    timer = setTimeout(getPlantData, 10000);
+                }
             }
-
         }
         getPlantData()
+        return () =>{
+            controller.abort();
+            clearTimeout(timer);
+        }
     }, []);
 
     return(

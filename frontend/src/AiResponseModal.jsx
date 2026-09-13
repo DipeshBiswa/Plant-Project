@@ -7,7 +7,7 @@ export default function AiReponseModal({isOpen, onClose}){
 
         const getAiResponse = async () =>{
             try{
-                const response = await fetch("http://localhost:8080/ai");
+                const response = await fetch("https://plant-project-production.up.railway.app/ai");
                 if(!response.ok){
                     throw new Error("Failed to fetch Ai response");
                 }
