@@ -79,11 +79,11 @@ function TelemetryData(){
                                     <dl className="telemetry-card__metrics">
                                         <div className="telemetry-card__metric">
                                             <dt className="telemetry-card__label">Sunlight Amount</dt>
-                                            <dd className="telemetry-card__value">{plant.sunlight}</dd>
+                                            <dd className="telemetry-card__value">{plant.lux}</dd>
                                         </div>
                                         <div className="telemetry-card__metric">
                                             <dt className="telemetry-card__label">Room Temperature</dt>
-                                            <dd className="telemetry-card__value">{plant.roomTemp}</dd>
+                                            <dd className="telemetry-card__value">{plant.roomTempF}</dd>
                                         </div>
                                         <div className="telemetry-card__metric">
                                             <dt className="telemetry-card__label">Humidity</dt>
