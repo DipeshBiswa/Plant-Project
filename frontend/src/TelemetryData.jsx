@@ -1,26 +1,35 @@
 import { useEffect, useState } from "react";
 import './TelemetryData.css';
-import { formatDayLabel, groupReadingsByDay } from './telemetryDays.js';
+import { formatDayLabel, groupReadingsByDay, sortReadingsNewestFirst } from './telemetryDays.js';
+import { TelemetryReading } from './TelemetryReading.jsx';
 
 function TelemetryData(){
     const [data, setPlantData] = useState([]);
-    
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState('');
+    const sortedReadings = sortReadingsNewestFirst(data);
+    const latestReading = sortedReadings[0];
 
     useEffect(() => {
         const controller = new AbortController();
         let timer;
         async function getPlantData(){
             try{
-                const response = await fetch("https://plant-project-production.up.railway.app/telemetry", {signal:controller.signal});
+                const response = await fetch("https://plant-project-production.up.railway.app/telemetry", {signal:controller.signal, cache: 'no-store'});
                 if(!response.ok){
                     throw new Error("Failed to fetch plant data");
                 }
                 const data = await response.json();
                 setPlantData(data);
+                setError('');
             }catch(error){
-                console.error(error);
+                if (!controller.signal.aborted) {
+                    console.error(error);
+                    setError('Unable to refresh plant data. Retrying automatically.');
+                }
             }finally{
                 if (!controller.signal.aborted){
+                    setIsLoading(false);
                     timer = setTimeout(getPlantData, 10000);
                 }
             }
@@ -38,7 +47,7 @@ function TelemetryData(){
                 <div>
                     <p className="section-eyebrow">The environment</p>
                     <h2 id="telemetry-title">Plant Data</h2>
-                    <p className="telemetry__description">Open a reading to see your plant’s environmental details.</p>
+                    <p className="telemetry__description">Readings refresh every 10 seconds. Open a reading to see your plant’s environmental details.</p>
                 </div>
                 <span className="telemetry__header-icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none">
@@ -49,57 +58,42 @@ function TelemetryData(){
                     </svg>
                 </span>
             </header>
-            <div className="telemetry__days">
-                {groupReadingsByDay(data).map(({ day, readings }) => (
-                    <details className="telemetry-day" key={day} open>
-                        <summary className="telemetry-day__summary">
-                            <span className="telemetry-day__date">{formatDayLabel(day)}</span>
-                            <span className="telemetry-day__count">
-                                {readings.length} {readings.length === 1 ? 'reading' : 'readings'}
-                            </span>
-                            <svg className="telemetry-day__chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                <path d="m6 9 6 6 6-6" />
-                            </svg>
-                        </summary>
-                        <div className="telemetry__readings">
-                            {readings.map((plant) =>(
-                                <details className="telemetry-card" key={plant.id}>
-                                    <summary className="telemetry-card__summary">
-                                        <span className="telemetry-card__heading">
-                                            <span className="telemetry-card__id">ID: {plant.id}</span>
-                                            <span className="telemetry-card__timestamp">
-                                                <span className="telemetry-card__label">Timestamp</span>
-                                                <span className="telemetry-card__timestamp-value">{plant.timestamp}</span>
-                                            </span>
-                                        </span>
-                                        <svg className="telemetry-card__chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                            <path d="m6 9 6 6 6-6" />
-                                        </svg>
-                                    </summary>
-                                    <dl className="telemetry-card__metrics">
-                                        <div className="telemetry-card__metric">
-                                            <dt className="telemetry-card__label">Sunlight Amount</dt>
-                                            <dd className="telemetry-card__value">{plant.lux}</dd>
-                                        </div>
-                                        <div className="telemetry-card__metric">
-                                            <dt className="telemetry-card__label">Room Temperature</dt>
-                                            <dd className="telemetry-card__value">{plant.roomTempF}</dd>
-                                        </div>
-                                        <div className="telemetry-card__metric">
-                                            <dt className="telemetry-card__label">Humidity</dt>
-                                            <dd className="telemetry-card__value">{plant.humidity}</dd>
-                                        </div>
-                                        <div className="telemetry-card__metric">
-                                            <dt className="telemetry-card__label">Soil Moisture</dt>
-                                            <dd className="telemetry-card__value">{plant.soilMoisture}</dd>
-                                        </div>
-                                    </dl>
-                                </details>
-                            ))}
-                        </div>
-                    </details>
-                ))}
-            </div>
+            {error && <p className="telemetry__status" role="status">{error}</p>}
+            <section className="telemetry__latest" aria-labelledby="latest-data-title">
+                <h3 className="telemetry__section-title" id="latest-data-title">Most recent data</h3>
+                {latestReading ? (
+                    <TelemetryReading plant={latestReading} />
+                ) : (
+                    <p className="telemetry__status" role="status">
+                        {isLoading ? 'Loading plant data…' : error ? 'Plant data is currently unavailable.' : 'No readings yet.'}
+                    </p>
+                )}
+            </section>
+            {sortedReadings.length > 0 && (
+                <section className="telemetry__history" aria-labelledby="reading-history-title">
+                    <h3 className="telemetry__section-title" id="reading-history-title">Reading history</h3>
+                    <div className="telemetry__days">
+                        {groupReadingsByDay(sortedReadings).map(({ day, readings }) => (
+                            <details className="telemetry-day" key={day}>
+                                <summary className="telemetry-day__summary">
+                                    <span className="telemetry-day__date">{formatDayLabel(day)}</span>
+                                    <span className="telemetry-day__count">
+                                        {readings.length} {readings.length === 1 ? 'reading' : 'readings'}
+                                    </span>
+                                    <svg className="telemetry-day__chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                        <path d="m6 9 6 6 6-6" />
+                                    </svg>
+                                </summary>
+                                <div className="telemetry__readings">
+                                    {readings.map((plant) => (
+                                        <TelemetryReading plant={plant} key={plant.id} />
+                                    ))}
+                                </div>
+                            </details>
+                        ))}
+                    </div>
+                </section>
+            )}
         </section>
     )
 

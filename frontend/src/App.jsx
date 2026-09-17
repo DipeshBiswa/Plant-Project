@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import {TelemetryData} from './TelemetryData.jsx'
 import './App.css'
 import { AiResponse } from './AiResponse.jsx'

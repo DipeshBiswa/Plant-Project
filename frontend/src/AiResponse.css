@@ -161,13 +161,18 @@
   cursor: pointer;
 }
 
-.ai-response__button:hover {
+.ai-response__button:hover:not(:disabled) {
   border-color: #294c37;
   background: #294c37;
 }
 
-.ai-response__button:active {
+.ai-response__button:active:not(:disabled) {
   background: #233f2e;
+}
+
+.ai-response__button:disabled {
+  opacity: 0.7;
+  cursor: wait;
 }
 
 .ai-response__button svg {

@@ -62,10 +62,27 @@
   fill: #f4f6ee;
 }
 
+.telemetry__latest,
+.telemetry__history {
+  margin-top: 26px;
+}
+
+.telemetry__section-title {
+  margin: 0 0 12px;
+  color: var(--color-green);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.telemetry__status {
+  color: var(--color-muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
 .telemetry__days {
   display: grid;
   gap: 14px;
-  padding-top: 26px;
 }
 
 .telemetry-day {
@@ -169,14 +186,6 @@
   outline-offset: 3px;
 }
 
-.telemetry-card__heading {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px 16px;
-  min-width: 0;
-}
-
 .telemetry-card__chevron {
   flex: 0 0 16px;
   width: 16px;
@@ -190,17 +199,6 @@
 
 .telemetry-card[open] > .telemetry-card__summary .telemetry-card__chevron {
   transform: rotate(180deg);
-}
-
-.telemetry-card__id {
-  min-width: 0;
-  padding: 5px 9px;
-  border: 1px solid #e2dfce;
-  border-radius: 7px;
-  color: #6f705c;
-  font-size: 10px;
-  line-height: 1.5;
-  overflow-wrap: anywhere;
 }
 
 .telemetry-card__metrics {

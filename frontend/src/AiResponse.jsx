@@ -18,7 +18,7 @@ function AiResponse(){
                 <h2 id="ai-response-title">A little plant wisdom.</h2>
                 <p className="ai-response__description">Make a little space for thoughtful plant care.</p>
                 <button className="ai-response__button" onClick={() => setModalOpen(true)}>
-                    Get Ai Response
+                    Get AI Response
                     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                         <path d="M5 12h14m-5-5 5 5-5 5" />
                     </svg>

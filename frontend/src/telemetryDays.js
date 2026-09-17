@@ -1,3 +1,14 @@
+function recordedTimestamp({ timestamp }) {
+  // The API returns a local date and time, so compare without timezone conversion.
+  return typeof timestamp === 'string'
+    ? timestamp.match(/^\d{4}-\d{2}-\d{2}[ T]\d{2}:\d{2}:\d{2}/)?.[0].replace('T', ' ') ?? ''
+    : '';
+}
+
+export function sortReadingsNewestFirst(data) {
+  return [...data].sort((a, b) => recordedTimestamp(b).localeCompare(recordedTimestamp(a)));
+}
+
 export function groupReadingsByDay(data) {
   const days = new Map();
 
