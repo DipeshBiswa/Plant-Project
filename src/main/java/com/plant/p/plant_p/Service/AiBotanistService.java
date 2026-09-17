@@ -195,7 +195,7 @@ After the #, provide the normal user-facing plant health assessment.
                 """.formatted(stringJson, previousData.toString());
         
 
-            MessageCreateParams params = MessageCreateParams.builder().model(Model.CLAUDE_SONNET_5).maxTokens(1100).system(PROMPT).addUserMessage(string).build();
+            MessageCreateParams params = MessageCreateParams.builder().model(Model.CLAUDE_SONNET_5).maxTokens(1800).system(PROMPT).addUserMessage(string).build();
             Message response = client.messages().create(params);
             String message = response.content().stream().flatMap(block -> block.text().stream()).map(textBlock -> textBlock.text()).collect(Collectors.joining("\n"));
             String[] splitMessage  = message.split("#", 2);
