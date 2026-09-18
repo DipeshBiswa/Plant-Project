@@ -42,26 +42,10 @@
 
 .dashboard-brand__name {
   font-family: var(--font-display);
-  font-size: 27px;
-  line-height: 1.1;
-  letter-spacing: -1px;
-}
-
-.dashboard-brand__name > span {
-  display: block;
-  margin-top: 7px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 9px;
+  font-size: 28px;
   font-weight: 600;
-  letter-spacing: 1.8px;
-  color: var(--color-muted);
-}
-
-.dashboard-header__note {
-  margin: 0;
-  color: var(--color-muted);
-  font-size: 12px;
-  line-height: 1.6;
+  line-height: 1.1;
+  letter-spacing: -0.8px;
 }
 
 .dashboard-main {
@@ -76,35 +60,13 @@
   margin-bottom: 38px;
 }
 
-.section-eyebrow {
-  margin: 0 0 13px;
-  color: var(--color-green);
-  font-size: 10px;
-  font-weight: 650;
-  line-height: 1.5;
-  letter-spacing: 1.9px;
-  text-transform: uppercase;
-}
-
 .dashboard-intro h1 {
   margin: 0;
   font-family: var(--font-display);
   font-size: clamp(36px, 3.8vw, 52px);
-  font-weight: 400;
-  line-height: 1.18;
-  letter-spacing: -1.8px;
-}
-
-.dashboard-intro h1 em {
-  color: #577449;
-  font-weight: 400;
-}
-
-.dashboard-intro__description {
-  margin: 17px 0 0;
-  color: var(--color-muted);
-  font-size: 14px;
-  line-height: 1.7;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -1.5px;
 }
 
 .dashboard-plant {
@@ -113,22 +75,18 @@
   flex-wrap: wrap;
   gap: 6px 12px;
   margin: 18px 0 0;
-  padding: 9px 14px;
-  border: 1px solid #d7e1cf;
-  border-radius: 14px;
-  background: #edf2e7;
   line-height: 1.5;
 }
 
 .dashboard-plant__label {
   color: var(--color-muted);
-  font-size: 11px;
+  font-size: 15px;
 }
 
 .dashboard-plant__name {
   color: var(--color-green);
-  font-size: 13px;
-  font-weight: 650;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .dashboard-sprig {
@@ -157,23 +115,6 @@
   min-width: 0;
 }
 
-.dashboard-footer {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 22px 0 30px;
-  border-top: 1px solid var(--color-border);
-  color: var(--color-muted);
-  font-size: 11px;
-  line-height: 1.6;
-}
-
-.dashboard-footer__detail {
-  font-family: var(--font-display);
-  font-size: 13px;
-  font-style: italic;
-}
-
 @media (min-width: 1600px) {
   .dashboard-main {
     padding-top: 64px;
@@ -195,10 +136,6 @@
 }
 
 @media (max-width: 760px) {
-  .dashboard-header__note {
-    display: none;
-  }
-
   .dashboard-main {
     padding-top: 36px;
   }
@@ -234,8 +171,4 @@
     letter-spacing: -1.3px;
   }
 
-  .dashboard-footer {
-    flex-wrap: wrap;
-    gap: 8px 20px;
-  }
 }

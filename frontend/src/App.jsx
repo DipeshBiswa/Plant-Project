@@ -3,8 +3,6 @@ import './App.css'
 import { AiResponse } from './AiResponse.jsx'
 
 function App() {
-  
-
   return (
     <div className="plant-dashboard">
       <header className="dashboard-header">
@@ -14,17 +12,14 @@ function App() {
               <path d="M16 26V15M16 20C8 20 5 15 6 8c7 0 10 4 10 12ZM16 15C16 8 20 5 27 5c0 7-4 11-11 10Z" />
             </svg>
           </span>
-          <span className="dashboard-brand__name">little leaf<span>PLANT CARE DASHBOARD</span></span>
+          <span className="dashboard-brand__name">LeafLink</span>
         </div>
-        <p className="dashboard-header__note">Small moments of care. More room to grow.</p>
       </header>
 
       <main className="dashboard-main">
         <section className="dashboard-intro" aria-labelledby="dashboard-title">
           <div>
-            <p className="section-eyebrow">A little closer to nature</p>
-            <h1 id="dashboard-title">Good things take <em>growing.</em></h1>
-            
+            <h1 id="dashboard-title">How is your plant doing?</h1>
             <p className="dashboard-plant">
               <span className="dashboard-plant__label">Your plant:</span>
               <strong className="dashboard-plant__name">Spider plant</strong>
@@ -44,10 +39,6 @@ function App() {
         </div>
       </main>
 
-      <footer className="dashboard-footer">
-        <span>A little care goes a long way.</span>
-        <span className="dashboard-footer__detail">Rooted in curiosity.</span>
-      </footer>
     </div>
   )
 }

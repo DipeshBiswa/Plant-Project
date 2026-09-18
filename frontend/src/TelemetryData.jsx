@@ -45,7 +45,6 @@ function TelemetryData(){
         <section className="telemetry" aria-labelledby="telemetry-title">
             <header className="telemetry__header">
                 <div>
-                    <p className="section-eyebrow">The environment</p>
                     <h2 id="telemetry-title">Plant Data</h2>
                     <p className="telemetry__description">Readings refresh every 10 seconds. Open a reading to see your plant’s environmental details.</p>
                 </div>
