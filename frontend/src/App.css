@@ -135,6 +135,7 @@
 .dashboard-insights {
   display: flex;
   align-items: stretch;
+  align-self: start;
   min-width: 0;
 }
 
