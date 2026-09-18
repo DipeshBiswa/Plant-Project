@@ -1,6 +1,6 @@
 :root {
-  --font-body: "Josefin Sans", sans-serif;
-  --font-display: var(--font-body);
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
 
   font-family: var(--font-body);
   font-weight: 400;

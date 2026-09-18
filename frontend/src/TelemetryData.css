@@ -20,7 +20,7 @@
   margin: 0;
   font-family: var(--font-display);
   font-size: 29px;
-  font-weight: 600;
+  font-weight: 400;
   line-height: 1.25;
   letter-spacing: -0.6px;
 }
@@ -75,9 +75,59 @@
   line-height: 1.7;
 }
 
+.telemetry__history {
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+}
+
+.telemetry__history-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 60px;
+  padding: 16px;
+  border-radius: 16px;
+  list-style: none;
+  cursor: pointer;
+}
+
+.telemetry__history-summary::-webkit-details-marker {
+  display: none;
+}
+
+.telemetry__history-summary:hover {
+  background: #f4f6ee;
+}
+
+.telemetry__history-summary:focus-visible {
+  outline: 3px solid var(--color-green);
+  outline-offset: 3px;
+}
+
+.telemetry__history-summary .telemetry__section-title {
+  margin: 0;
+}
+
+.telemetry__history-chevron {
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  color: var(--color-green);
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.telemetry__history[open] > .telemetry__history-summary .telemetry__history-chevron {
+  transform: rotate(180deg);
+}
+
 .telemetry__days {
   display: grid;
   gap: 14px;
+  padding: 0 12px 12px;
 }
 
 .telemetry-day {

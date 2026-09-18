@@ -31,6 +31,7 @@ export default function AiReponseModal({isOpen, onClose}){
             <div className="modal-overlay" onClick={onClose}>
             <div className="modal-content" role="dialog" aria-modal="true" aria-labelledby="ai-modal-title" onClick={(e) => e.stopPropagation()}>
                 <header className="ai-modal__header">
+                    <p className="section-caption">Trends &amp; care</p>
                     <h2 id="ai-modal-title">Plant Deep Dive</h2>
                     <p className="ai-modal__description">Plant care insights based on the past three days of readings.</p>
                 </header>

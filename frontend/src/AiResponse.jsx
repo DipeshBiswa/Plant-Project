@@ -8,8 +8,11 @@ function AiResponse(){
     return(
         <section className="ai-response" aria-labelledby="ai-response-title">
             <div className="ai-response__content">
-                <h2 id="ai-response-title">Plant Deep Dive</h2>
-                <p className="ai-response__description">Plant care insights based on the past three days of readings.</p>
+                <header className="ai-response__header">
+                    <p className="section-caption">Trends &amp; care</p>
+                    <h2 id="ai-response-title">Plant Deep Dive</h2>
+                    <p className="ai-response__description">Plant care insights based on the past three days of readings.</p>
+                </header>
                 <button className="ai-response__button" onClick={() => setModalOpen(true)}>
                     View insights
                     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">

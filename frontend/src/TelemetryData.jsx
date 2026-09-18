@@ -45,6 +45,7 @@ function TelemetryData(){
         <section className="telemetry" aria-labelledby="telemetry-title">
             <header className="telemetry__header">
                 <div>
+                    <p className="section-caption">Light, water &amp; climate</p>
                     <h2 id="telemetry-title">Plant Data</h2>
                     <p className="telemetry__description">Readings refresh every 10 seconds. Open a reading to see your plant’s environmental details.</p>
                 </div>
@@ -69,8 +70,13 @@ function TelemetryData(){
                 )}
             </section>
             {sortedReadings.length > 0 && (
-                <section className="telemetry__history" aria-labelledby="reading-history-title">
-                    <h3 className="telemetry__section-title" id="reading-history-title">Reading history</h3>
+                <details className="telemetry__history" aria-labelledby="reading-history-title">
+                    <summary className="telemetry__history-summary">
+                        <h3 className="telemetry__section-title" id="reading-history-title">Reading history</h3>
+                        <svg className="telemetry__history-chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="m6 9 6 6 6-6" />
+                        </svg>
+                    </summary>
                     <div className="telemetry__days">
                         {groupReadingsByDay(sortedReadings).map(({ day, readings }) => (
                             <details className="telemetry-day" key={day}>
@@ -91,7 +97,7 @@ function TelemetryData(){
                             </details>
                         ))}
                     </div>
-                </section>
+                </details>
             )}
         </section>
     )

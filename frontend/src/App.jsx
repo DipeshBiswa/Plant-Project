@@ -19,6 +19,7 @@ function App() {
       <main className="dashboard-main">
         <section className="dashboard-intro" aria-labelledby="dashboard-title">
           <div>
+            <p className="section-caption">Your plant at a glance</p>
             <h1 id="dashboard-title">How is your plant doing?</h1>
             <p className="dashboard-plant">
               <span className="dashboard-plant__label">Your plant:</span>
