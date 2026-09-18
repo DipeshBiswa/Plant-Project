@@ -12,7 +12,10 @@ function App() {
               <path d="M16 26V15M16 20C8 20 5 15 6 8c7 0 10 4 10 12ZM16 15C16 8 20 5 27 5c0 7-4 11-11 10Z" />
             </svg>
           </span>
-          <span className="dashboard-brand__name">LeafLink</span>
+          <span className="dashboard-brand__name">
+            LeafLink
+            <span className="dashboard-brand__caption">Your Plant Dashboard</span>
+          </span>
         </div>
       </header>
 

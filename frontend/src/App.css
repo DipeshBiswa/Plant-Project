@@ -48,6 +48,17 @@
   letter-spacing: -0.8px;
 }
 
+.dashboard-brand__caption {
+  display: block;
+  margin-top: 7px;
+  color: var(--color-muted);
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.08em;
+}
+
 .dashboard-main {
   padding: 48px 0 40px;
 }
@@ -84,6 +95,10 @@
   flex-wrap: wrap;
   gap: 6px 12px;
   margin: 18px 0 0;
+  padding: 9px 14px;
+  border: 1px solid #d7e1cf;
+  border-radius: 14px;
+  background: #edf2e7;
   line-height: 1.5;
 }
 
