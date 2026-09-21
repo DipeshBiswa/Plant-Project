@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.plant.p.plant_p.Models.Telemetry;
 import com.plant.p.plant_p.Service.TelemetryService;
 
+/**
+ * Controller to recieve requests from frontend and esp32
+ * TelemetryController
+ */
 @RequestMapping("/telemetry")
 @RestController
 @CrossOrigin(origins = {"http://localhost:5173/","https://plant-frontend.up.railway.app/"})
